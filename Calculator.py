@@ -37,6 +37,7 @@ def Help():
         else:
             return
 
+
 while True:
     while True:
         number_one = input("\nChoose First Number: \n").strip()
