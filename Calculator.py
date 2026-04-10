@@ -7,7 +7,7 @@ RED = "\033[91m"
 RESET = "\033[0m"
 
 print(f"{GREEN}=== WELCOME TO THE CALCULATOR ==={RESET}")
-print(f"{CYAN}Type 'help' for usage (in operations), 'history' to show previous calculations (in operations), 'exit' to quit.{RESET}")
+print(f"{CYAN}Type 'help' for usage (in operations), 'history' to show previous calculations (in operations), 'exit' to quit (in operations).{RESET}")
 history = []
 def Help():
     while True:
