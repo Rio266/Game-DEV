@@ -10,6 +10,10 @@ while True:
         while username_counter < 3: 
             username = input("\nWhat would you like your username to be? ").strip()
             if len(username) >= 3:
+                if username in users:
+                    print("/username is taken")
+                    print("/please choose another username")
+                    continue
                 print("/username is valid")
                 break
             elif len(username) < 3:
@@ -49,7 +53,7 @@ while True:
                 password_counter += 1
                 continue
         else:
-            print("/password counter exceeded limit")
+            print("\n/password counter exceeded limit")
             print("/redirecting to menu")
             continue
     elif options == "2":
@@ -61,7 +65,7 @@ while True:
                 print("/username successful")
                 break
             else:
-                print("/username unsuccessful")
+                print("/username not found")
                 username_counter += 1
                 continue
         else:
@@ -82,19 +86,53 @@ while True:
             print("/redirecting to menu")
             continue
     elif options == "3":
-        while True:
+        username_counter = 0
+        password_counter = 0
+        while username_counter < 3:
             username_reset = input("\nWhat is your username? ")
             if username_reset in users:
                 print("/username found")
                 break
             else:
                 print("/username not found")
+                username_counter += 1
                 continue
-        while True:
-            password_reset = input("\nWhat password would you like to add? ")
-            users[username_reset] = password_reset
-            print("/password changed successfully")
-            break
+        else:
+            print("/username counter limit exceeded")
+            print("/redirecting to menu")
+            continue
+        while password_counter < 3:
+            password_reset = input("\nWhat would you like your password to be? ")
+            number = False
+            upper = False
+            for i in password_reset:
+                if i.isdigit():
+                    number = True
+                if i.isupper():
+                    upper = True
+            if len(password_reset) >= 3 and number and upper:
+                print("/password is valid")
+            else:
+                print("\n=== Password Rules ===")
+                print("/password must be at least 3 characters")
+                print("/password must contain an uppercase letter")
+                print("/password must contain a number")
+                password_counter += 1
+                continue
+            confirmpassword = input("\nPlease confirm your password: ")
+            if password_reset == confirmpassword:
+                users[username_reset] = password_reset
+                print("/password is reset")
+                print("/information is stored")
+                break
+            else:
+                print("/passwords do not match")
+                password_counter += 1
+                continue
+        else:
+            print("\n/password counter exceeded limit")
+            print("/redirecting to menu")
+            continue
     elif options == "4":
         print("\nThank you for using the Sign Up Project \nGoodbye.")
         exit()
