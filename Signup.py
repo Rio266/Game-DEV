@@ -1,5 +1,6 @@
-username = ""
-password = ""
+users = {
+
+}
 print("=== WELCOME TO THE SIGN UP PROJECT ===")
 while True:
     options = input("\nWhat action would you like to perform? \n1. Sign Up \n2. Sign In \n3. Reset Password \n4. Exit\n")
@@ -41,6 +42,7 @@ while True:
             if password == confirmpassword:
                 print("/both passwords match")
                 print("/information is stored")
+                users[username] = password
                 break
             else:
                 print("/passwords do not match")
@@ -55,7 +57,7 @@ while True:
         password_counter = 0
         while username_counter < 3:
             username_requested = input("\nWhat is your username? ")
-            if username == username_requested:
+            if username_requested in users:
                 print("/username successful")
                 break
             else:
@@ -68,7 +70,7 @@ while True:
             continue
         while password_counter < 3:
             password_requested = input("\nWhat is your password? ")
-            if password == password_requested:
+            if users[username_requested] == password_requested:
                 print("/password successful")
                 break
             else:
@@ -82,7 +84,7 @@ while True:
     elif options == "3":
         while True:
             username_reset = input("\nWhat is your username? ")
-            if username == username_reset:
+            if username_reset in users:
                 print("/username found")
                 break
             else:
@@ -90,7 +92,7 @@ while True:
                 continue
         while True:
             password_reset = input("\nWhat password would you like to add? ")
-            password = password_reset
+            users[username_reset] = password_reset
             print("/password changed successfully")
             break
     elif options == "4":
