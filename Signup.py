@@ -13,11 +13,11 @@ while True:
                 break
             elif len(username) < 3:
                  print("/username has to have at least 3 letters")
-                 username_counter = username_counter + 1
+                 username_counter += 1
                  continue
         else:
             print("/username counter exceeded limit")
-            print("/directing to menu")
+            print("/redirecting to menu")
             continue
         while password_counter < 3:
             password = input("\nWhat would you like your password to be? ")
@@ -35,7 +35,7 @@ while True:
                 print("/password must be at least 3 characters")
                 print("/password must contain an uppercase letter")
                 print("/password must contain a number")
-                password_counter = password_counter + 1
+                password_counter += 1
                 continue
             confirmpassword = input("\nPlease confirm your password: ")
             if password == confirmpassword:
@@ -44,29 +44,41 @@ while True:
                 break
             else:
                 print("/passwords do not match")
-                password_counter = password_counter + 1
+                password_counter += 1
                 continue
         else:
             print("/password counter exceeded limit")
-            print("/directing to menu")
+            print("/redirecting to menu")
             continue
     elif options == "2":
-        while True:
+        username_counter = 0
+        password_counter = 0
+        while username_counter < 3:
             username_requested = input("\nWhat is your username? ")
             if username == username_requested:
                 print("/username successful")
                 break
             else:
                 print("/username unsuccessful")
+                username_counter += 1
                 continue
-        while True:
+        else:
+            print("/username counter limit exceeded")
+            print("/redirecting to menu")
+            continue
+        while password_counter < 3:
             password_requested = input("\nWhat is your password? ")
             if password == password_requested:
                 print("/password successful")
                 break
             else:
                 print("/password unsuccessful")
+                password_counter += 1
                 continue
+        else:
+            print("/username counter limit exceeded")
+            print("/redirecting to menu")
+            continue
     elif options == "3":
         while True:
             username_reset = input("\nWhat is your username? ")
