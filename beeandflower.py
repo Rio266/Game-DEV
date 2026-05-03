@@ -1,4 +1,4 @@
-import pgzrun, random, time
+import pgzrun, random
 WIDTH = 600
 HEIGHT = 480
 bee = Actor("bee")
