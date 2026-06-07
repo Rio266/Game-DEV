@@ -49,4 +49,49 @@ def draw():
     for i in answer_boxes:
         screen.draw.textbox(question[j].strip(), i, color = "blue")
         j += 1
+def update():
+    move_marquee()
+def move_marquee():
+    marquee_box.x -= 2
+    if marquee_box.right < 0:
+        marquee_box.left = WIDTH
+def on_mouse_down(pos):
+    j = 1
+    for i in answer_boxes:
+        if i.collidepoint(pos):
+            if j is int(question[5]):
+                correct_answer()
+            else:
+                game_over()
+        j += 1
+    if skip_box.collidepoint(pos):
+        skip_question()
+def correct_answer():
+    global score, question, questions, time_left
+    score += 1
+    if questions:
+        question = readnextquestion()
+        time_left = 10
+    else:
+        game_over()
+def game_over():
+    global question, time_left,  is_gameover
+    message = f"The game is over! Well done! \nYour score is {score}/{count}"
+    question = [message, "-", "-", "-", "-", 5]
+    time_left = 0
+    is_gameover = True
+def skip_question():
+    global question, time_left
+    if questions and not is_gameover:
+        question = readnextquestion()
+        time_left = 10
+    else:
+        game_over()
+def timer():
+    global time_left
+    if time_left:
+        time_left -= 1
+    else:
+        game_over()
+clock.schedule_interval(timer, 1)
 pgzrun.go()
